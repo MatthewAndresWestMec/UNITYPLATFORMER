@@ -24,17 +24,7 @@ public class PlayerLife : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (!IsPlayerOnTerrain())
-            {
-                // Player is not on terrain, so the enemy dies
-                Destroy(collision.gameObject);
-                // You may want to add sound effect or other effects here
-            }
-            else
-            {
-                // Player is on terrain, so the player dies
-                Die();
-            }
+            Die();
         }
     }
 
@@ -50,17 +40,4 @@ public class PlayerLife : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private bool IsPlayerOnTerrain()
-    {
-        // Check if the player is colliding with any object tagged as "Terrain"
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Terrain"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 }
